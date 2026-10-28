@@ -1,0 +1,24 @@
+************* Module music_catalog
+music_catalog.py:10:0: C0301: Line too long (109/100) (line-too-long)
+music_catalog.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+music_catalog.py:9:0: C0116: Missing function or method docstring (missing-function-docstring)
+music_catalog.py:9:0: C0103: Function name "addSong" doesn't conform to snake_case naming style (invalid-name)
+music_catalog.py:9:0: W0102: Dangerous default value [] as argument (dangerous-default-value)
+music_catalog.py:10:17: C0209: Formatting a regular string which could be an f-string (consider-using-f-string)
+music_catalog.py:15:0: C0116: Missing function or method docstring (missing-function-docstring)
+music_catalog.py:15:0: C0103: Function name "shufflePick" doesn't conform to snake_case naming style (invalid-name)
+music_catalog.py:20:0: C0116: Missing function or method docstring (missing-function-docstring)
+music_catalog.py:22:4: R1705: Unnecessary "else" after "return", remove the "else" and de-indent the code inside it (no-else-return)
+music_catalog.py:28:0: C0116: Missing function or method docstring (missing-function-docstring)
+music_catalog.py:28:0: C0103: Function name "savePlaylist" doesn't conform to snake_case naming style (invalid-name)
+music_catalog.py:32:0: C0116: Missing function or method docstring (missing-function-docstring)
+music_catalog.py:32:0: C0103: Function name "loadPlaylist" doesn't conform to snake_case naming style (invalid-name)
+music_catalog.py:36:0: C0116: Missing function or method docstring (missing-function-docstring)
+music_catalog.py:36:0: C0103: Function name "totalPlays" doesn't conform to snake_case naming style (invalid-name)
+music_catalog.py:39:4: W0702: No exception type(s) specified (bare-except)
+music_catalog.py:43:0: C0116: Missing function or method docstring (missing-function-docstring)
+music_catalog.py:48:19: C0321: More than one statement on a single line (multiple-statements)
+
+-----------------------------------
+Your code has been rated at 4.57/10
+
