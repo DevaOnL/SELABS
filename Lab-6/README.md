@@ -12,7 +12,7 @@ fees, chooses a parking floor, and prices monthly passes.
 
 ## Setup
 
-Run these commands from `Lab-6/` with Python 3.10 or later:
+Run these commands from `Lab-6/` with Python 3.11 or later:
 
 ```powershell
 python -m venv .venv
@@ -45,3 +45,39 @@ counts are in [reports/baseline.json](reports/baseline.json).
 
 The handout requests screenshots only after reaching at least 90% coverage,
 so the initial results are retained as text and JSON.
+
+## Code coverage submission
+
+`CodeCoverageTest_parking_fee.py` contains 11 cases. They exercise the free
+stay, rounded paid hours, EV reduction, lost-ticket penalty, both validation
+errors, every slot return, both pass prices, the resident discount, and the
+unsupported-pass error.
+
+```powershell
+python -m coverage run --data-file=.coverage.code -m pytest CodeCoverageTest_parking_fee.py -q
+python -m coverage report --data-file=.coverage.code --fail-under=90 -m
+```
+
+**Result:** 11 tests pass and all 34 statements execute (**100% line coverage**).
+The screenshot captures the unedited terminal transcript saved in
+[reports/code_coverage.txt](reports/code_coverage.txt).
+
+![Code coverage terminal output](screenshots/code_coverage.png)
+
+### Why full line coverage is insufficient
+
+Running the same 11 cases with `coverage run --branch` reaches only 20 of
+24 branch outcomes (**83.33% branch coverage**). The combined `Cover` column
+shows 93.10%, even though branch coverage alone is below 90%.
+
+| Missing arc | Decision still untested |
+| --- | --- |
+| `13 -> 15` | A paid stay is an exact number of hours, so no rounding occurs. |
+| `16 -> 18` | No EV discount applies. |
+| `18 -> 20` | The ticket is retained, so no penalty applies. |
+| `40 -> 42` | A non-resident pays the full monthly-pass price. |
+
+The diagnostic output is in
+[reports/code_suite_branch_diagnostic.txt](reports/code_suite_branch_diagnostic.txt)
+and its [JSON report](reports/code_suite_branch_diagnostic.json). It has no
+screenshot because this suite's branch coverage is below the required 90%.

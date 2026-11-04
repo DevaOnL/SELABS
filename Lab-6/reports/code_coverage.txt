@@ -1,0 +1,10 @@
+$ python -m coverage run --data-file=.coverage.code -m pytest CodeCoverageTest_parking_fee.py -q
+...........                                                              [100%]
+11 passed in 0.02s
+
+$ python -m coverage report --data-file=.coverage.code --fail-under=90 -m
+Name             Stmts   Miss    Cover   Missing
+------------------------------------------------
+parking_fee.py      34      0  100.00%
+------------------------------------------------
+TOTAL               34      0  100.00%
