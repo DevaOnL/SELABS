@@ -1,0 +1,10 @@
+$ python -m coverage run --branch --data-file=.coverage.branch -m pytest BranchCoverageTest_parking_fee.py -q
+.................................................................        [100%]
+65 passed in 0.06s
+
+$ python -m coverage report --data-file=.coverage.branch --fail-under=100 -m
+Name             Stmts   Miss Branch BrPart    Cover   Missing
+--------------------------------------------------------------
+parking_fee.py      34      0     24      0  100.00%
+--------------------------------------------------------------
+TOTAL               34      0     24      0  100.00%

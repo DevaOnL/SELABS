@@ -81,3 +81,79 @@ The diagnostic output is in
 [reports/code_suite_branch_diagnostic.txt](reports/code_suite_branch_diagnostic.txt)
 and its [JSON report](reports/code_suite_branch_diagnostic.json). It has no
 screenshot because this suite's branch coverage is below the required 90%.
+
+## Branch coverage submission
+
+`BranchCoverageTest_parking_fee.py` contains 65 independent cases and reaches
+every statement and branch without relying on the starter or code-coverage
+suite. It checks:
+
+- Durations 0, 1, 29, 30, 31, 59, 60, 61, 119, 120, and 121 minutes,
+  plus long stays and each vehicle's hourly rate.
+- Both outcomes of the hour-rounding decision and both sides of the
+  30-minute free-stay boundary.
+- Non-EVs, eligible EVs, and EV trucks, which receive no discount.
+- Retained and lost tickets, including the penalty on free stays and its
+  addition after the EV discount.
+- Unknown vehicles, negative durations, and validation order when both
+  inputs are invalid.
+- Zero, negative, and positive slot counts; full-parking priority over
+  disabled access; and ground-floor priority over truck basement parking.
+- Both pass types, resident and non-resident prices, and unsupported pass
+  vehicles with either residency value.
+
+```powershell
+python -m coverage run --branch --data-file=.coverage.branch -m pytest BranchCoverageTest_parking_fee.py -q
+python -m coverage report --data-file=.coverage.branch --fail-under=100 -m
+python -m coverage json --data-file=.coverage.branch -o reports/branch_coverage.json
+```
+
+**Result:** 65 tests pass, with **34/34 statements (100%)** and
+**24/24 branch outcomes (100%)** covered. There are no missing statements,
+missing branches, partial branches, or excluded lines. See the
+[terminal transcript](reports/branch_coverage.txt) and
+[JSON report](reports/branch_coverage.json).
+
+![Branch coverage terminal output](screenshots/branch_coverage.png)
+
+The PNGs are browser screenshots of their saved, unedited terminal
+transcripts. Screenshots are supplied only for the successful code-coverage
+and branch-coverage submissions.
+
+## Comparison and interpretation
+
+| Test suite | Passing cases | Statements | Branch outcomes | Combined branch-mode `Cover` |
+| --- | ---: | ---: | ---: | ---: |
+| Starter | 2 | 15/34 (44.12%) | 8/24 (33.33%) | 39.66% |
+| Code coverage | 11 | 34/34 (100%) | 20/24 (83.33%) | 93.10% |
+| Branch coverage | 65 | 34/34 (100%) | 24/24 (100%) | 100% |
+
+Line coverage counts executed statements. Branch coverage counts the
+outcomes of decisions: reaching an `if` line does not establish that both
+its true and false routes were tested. Here, the line suite executes every
+statement while missing four routes; the branch suite closes all four.
+
+All three application functions are exercised. Path coverage concerns
+complete sequences of decisions and is not measured here. Full branch
+coverage does not prove that every possible input or path is correct; the
+boundary and policy-interaction assertions add checks beyond the metric.
+The expected fees and pass prices are explicit values, so the tests also
+check results rather than merely executing paths.
+
+## Run the complete submission
+
+`pytest.ini` includes both handout filename patterns in test discovery.
+From `Lab-6/`, run:
+
+```powershell
+python -m coverage run --branch --data-file=.coverage.all -m pytest -q
+python -m coverage report --data-file=.coverage.all --fail-under=100 -m
+```
+
+This runs the two unchanged starter cases, 11 code-coverage cases, and 65
+branch-coverage cases: **78 tests total**. The final output is saved in
+[reports/all_tests.txt](reports/all_tests.txt).
+
+The commit history groups the starter and baseline, the code-coverage
+submission with its evidence, and the branch-coverage submission with its
+evidence and final analysis.
