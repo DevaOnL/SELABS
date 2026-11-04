@@ -1,0 +1,21 @@
+$ python -m coverage run --data-file=.coverage.baseline-line -m pytest test_parking_fee.py -q
+..                                                                       [100%]
+2 passed in 0.02s
+
+$ python -m coverage report --data-file=.coverage.baseline-line -m
+Name             Stmts   Miss   Cover   Missing
+-----------------------------------------------
+parking_fee.py      34     19  44.12%   6, 8, 12-15, 17, 19, 25, 27, 29, 34-42
+-----------------------------------------------
+TOTAL               34     19  44.12%
+
+$ python -m coverage run --branch --data-file=.coverage.baseline-branch -m pytest test_parking_fee.py -q
+..                                                                       [100%]
+2 passed in 0.01s
+
+$ python -m coverage report --data-file=.coverage.baseline-branch -m
+Name             Stmts   Miss Branch BrPart   Cover   Missing
+-------------------------------------------------------------
+parking_fee.py      34     19     24      8  39.66%   6, 8, 12-15, 17, 19, 25, 27, 29, 34-42
+-------------------------------------------------------------
+TOTAL               34     19     24      8  39.66%
