@@ -1,12 +1,16 @@
 {
   "python": "3.14.6 (main, Aug 10 2026, 06:36:12) [GCC 16.1.1 20260728]",
+  "dependencies": {
+    "hypothesis": "6.170.15",
+    "pytest": "9.2.0"
+  },
   "phase": "before",
   "application_sha256": "0a8064d5ab66236b9a15de16bc0ef60c062d08f9155c88d703fd3cac4aa1b56e",
   "tests_sha256": "0709d5eed8343c40a0fc71899068dc3611634797868cf0110f1480bc3d5a5fdf",
   "commands": [
     {
       "name": "application_valid",
-      "started_utc": "2026-11-12T06:33:06.293476+00:00",
+      "started_utc": "2026-11-12T07:17:08.199551+00:00",
       "command": "python -u parking_fee.py",
       "cwd_relative_to_lab": "baseline",
       "stdin": "09:30-11:45\ncar\nka01ab1234\n",
@@ -16,7 +20,7 @@
     },
     {
       "name": "application_invalid",
-      "started_utc": "2026-11-12T06:33:06.307365+00:00",
+      "started_utc": "2026-11-12T07:17:08.213146+00:00",
       "command": "python -u parking_fee.py",
       "cwd_relative_to_lab": "baseline",
       "stdin": "\nhovercraft\nx\n",
@@ -26,23 +30,23 @@
     },
     {
       "name": "pytest",
-      "started_utc": "2026-11-12T06:33:06.344604+00:00",
-      "command": "python -m pytest --import-mode=importlib ../test_parking_fee.py::test_minutes_parked_no_crash ../test_parking_fee.py::test_hourly_rate_no_crash ../test_parking_fee.py::test_format_plate_no_crash -q --tb=short --color=no",
+      "started_utc": "2026-11-12T07:17:08.244048+00:00",
+      "command": "python -m pytest --import-mode=importlib fuzz_snapshot.py::test_minutes_parked_no_crash fuzz_snapshot.py::test_hourly_rate_no_crash fuzz_snapshot.py::test_format_plate_no_crash -q --tb=short --color=no",
       "cwd_relative_to_lab": "baseline",
       "stdin": null,
       "exit_code": 1,
       "expected_exit_code": 1,
-      "output_sha256": "0c1328b6f1845583e154f2d9507a2941c53c8e7f0432884eab996dc632e52c06"
+      "output_sha256": "5828ea19143d235a05c8d812e72468e914785dbc476163962691ba6d8ec97191"
     },
     {
       "name": "pytest_summary",
-      "started_utc": "2026-11-12T06:33:07.133397+00:00",
-      "command": "python -m pytest --import-mode=importlib ../test_parking_fee.py::test_minutes_parked_no_crash ../test_parking_fee.py::test_hourly_rate_no_crash ../test_parking_fee.py::test_format_plate_no_crash -q --tb=no --color=no",
+      "started_utc": "2026-11-12T07:17:08.964846+00:00",
+      "command": "python -m pytest --import-mode=importlib fuzz_snapshot.py::test_minutes_parked_no_crash fuzz_snapshot.py::test_hourly_rate_no_crash fuzz_snapshot.py::test_format_plate_no_crash -q --tb=no --color=no",
       "cwd_relative_to_lab": "baseline",
       "stdin": null,
       "exit_code": 1,
       "expected_exit_code": 1,
-      "output_sha256": "a0f8ba153e1b13f8dc71a665e3bb6f0427e2b81b50a290c355366bceae42e6f1"
+      "output_sha256": "fc52174e7becbae21068c31cffe37357427e22e3defe320ce4af713df621fa0e"
     }
   ]
 }

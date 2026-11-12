@@ -18,12 +18,12 @@ BASIC_TESTS = [
 ]
 
 
-def capture(phase):
+def _capture(phase):
     """Replay the original or final application and record command metadata."""
     output_dir = ROOT / "reports" / phase
     output_dir.mkdir(parents=True, exist_ok=True)
     cwd = ROOT / "baseline" if phase == "before" else ROOT
-    test_file = "../test_parking_fee.py" if phase == "before" else "test_parking_fee.py"
+    test_file = "fuzz_snapshot.py" if phase == "before" else "test_parking_fee.py"
     tests = [f"{test_file}::{name}" for name in BASIC_TESTS]
     cases = [
         ("application_valid", ["-u", "parking_fee.py"],
@@ -73,7 +73,7 @@ def capture(phase):
             (cwd / "parking_fee.py").read_bytes()
         ).hexdigest(),
         "tests_sha256": hashlib.sha256(
-            (ROOT / "test_parking_fee.py").read_bytes()
+            (cwd / test_file).read_bytes()
         ).hexdigest(),
         "commands": records,
     }
@@ -84,6 +84,20 @@ def capture(phase):
     (output_dir / "manifest.json").write_text(
         json.dumps(metadata, indent=2) + "\n", encoding="utf-8",
     )
+
+
+def capture(phase):
+    """Replay the exact preserved starter properties when collecting failures."""
+    if phase == "after":
+        return _capture(phase)
+    snapshot = ROOT / "baseline/fuzz_snapshot.py"
+    if snapshot.exists():
+        raise SystemExit(f"Refusing to overwrite an existing file: {snapshot}")
+    try:
+        snapshot.write_bytes((ROOT / "baseline/fuzz_tests.py.txt").read_bytes())
+        return _capture(phase)
+    finally:
+        snapshot.unlink(missing_ok=True)
 
 
 if __name__ == "__main__":

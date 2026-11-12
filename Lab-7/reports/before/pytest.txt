@@ -2,13 +2,13 @@ FFF                                                                      [100%]
 =================================== FAILURES ===================================
 _________________________ test_minutes_parked_no_crash _________________________
   + Exception Group Traceback (most recent call last):
-  |   File "/home/d3va/Downloads/Academics_General/Sem-5/SE/lab7/SELABS/Lab-7/test_parking_fee.py", line 9, in test_minutes_parked_no_crash
+  |   File "/home/d3va/Downloads/Academics_General/Sem-5/SE/lab7/SELABS/Lab-7/baseline/fuzz_snapshot.py", line 9, in test_minutes_parked_no_crash
   |     @given(st.text() | st.none())
   |                    ^^^
   | ExceptionGroup: Hypothesis found 2 distinct failures. (2 sub-exceptions)
   +-+---------------- 1 ----------------
     | Traceback (most recent call last):
-    |   File "/home/d3va/Downloads/Academics_General/Sem-5/SE/lab7/SELABS/Lab-7/test_parking_fee.py", line 12, in test_minutes_parked_no_crash
+    |   File "/home/d3va/Downloads/Academics_General/Sem-5/SE/lab7/SELABS/Lab-7/baseline/fuzz_snapshot.py", line 12, in test_minutes_parked_no_crash
     |     result = minutes_parked(value)
     |   File "/home/d3va/Downloads/Academics_General/Sem-5/SE/lab7/SELABS/Lab-7/baseline/parking_fee.py", line 4, in minutes_parked
     |     entry, exit_time = times.split('-')
@@ -19,7 +19,7 @@ _________________________ test_minutes_parked_no_crash _________________________
     | )
     +---------------- 2 ----------------
     | Traceback (most recent call last):
-    |   File "/home/d3va/Downloads/Academics_General/Sem-5/SE/lab7/SELABS/Lab-7/test_parking_fee.py", line 12, in test_minutes_parked_no_crash
+    |   File "/home/d3va/Downloads/Academics_General/Sem-5/SE/lab7/SELABS/Lab-7/baseline/fuzz_snapshot.py", line 12, in test_minutes_parked_no_crash
     |     result = minutes_parked(value)
     |   File "/home/d3va/Downloads/Academics_General/Sem-5/SE/lab7/SELABS/Lab-7/baseline/parking_fee.py", line 4, in minutes_parked
     |     entry, exit_time = times.split('-')
@@ -31,13 +31,13 @@ _________________________ test_minutes_parked_no_crash _________________________
     +------------------------------------
 __________________________ test_hourly_rate_no_crash ___________________________
   + Exception Group Traceback (most recent call last):
-  |   File "/home/d3va/Downloads/Academics_General/Sem-5/SE/lab7/SELABS/Lab-7/test_parking_fee.py", line 17, in test_hourly_rate_no_crash
+  |   File "/home/d3va/Downloads/Academics_General/Sem-5/SE/lab7/SELABS/Lab-7/baseline/fuzz_snapshot.py", line 17, in test_hourly_rate_no_crash
   |     @given(st.text() | st.none())
   |                    ^^^
   | ExceptionGroup: Hypothesis found 2 distinct failures. (2 sub-exceptions)
   +-+---------------- 1 ----------------
     | Traceback (most recent call last):
-    |   File "/home/d3va/Downloads/Academics_General/Sem-5/SE/lab7/SELABS/Lab-7/test_parking_fee.py", line 20, in test_hourly_rate_no_crash
+    |   File "/home/d3va/Downloads/Academics_General/Sem-5/SE/lab7/SELABS/Lab-7/baseline/fuzz_snapshot.py", line 20, in test_hourly_rate_no_crash
     |     result = hourly_rate(value)
     |   File "/home/d3va/Downloads/Academics_General/Sem-5/SE/lab7/SELABS/Lab-7/baseline/parking_fee.py", line 10, in hourly_rate
     |     return RATES[vehicle.strip().lower()]
@@ -48,7 +48,7 @@ __________________________ test_hourly_rate_no_crash ___________________________
     | )
     +---------------- 2 ----------------
     | Traceback (most recent call last):
-    |   File "/home/d3va/Downloads/Academics_General/Sem-5/SE/lab7/SELABS/Lab-7/test_parking_fee.py", line 20, in test_hourly_rate_no_crash
+    |   File "/home/d3va/Downloads/Academics_General/Sem-5/SE/lab7/SELABS/Lab-7/baseline/fuzz_snapshot.py", line 20, in test_hourly_rate_no_crash
     |     result = hourly_rate(value)
     |   File "/home/d3va/Downloads/Academics_General/Sem-5/SE/lab7/SELABS/Lab-7/baseline/parking_fee.py", line 10, in hourly_rate
     |     return RATES[vehicle.strip().lower()]
@@ -60,13 +60,13 @@ __________________________ test_hourly_rate_no_crash ___________________________
     +------------------------------------
 __________________________ test_format_plate_no_crash __________________________
   + Exception Group Traceback (most recent call last):
-  |   File "/home/d3va/Downloads/Academics_General/Sem-5/SE/lab7/SELABS/Lab-7/test_parking_fee.py", line 25, in test_format_plate_no_crash
+  |   File "/home/d3va/Downloads/Academics_General/Sem-5/SE/lab7/SELABS/Lab-7/baseline/fuzz_snapshot.py", line 25, in test_format_plate_no_crash
   |     @given(st.text() | st.none())
   |                    ^^^
   | ExceptionGroup: Hypothesis found 3 distinct failures. (3 sub-exceptions)
   +-+---------------- 1 ----------------
     | Traceback (most recent call last):
-    |   File "/home/d3va/Downloads/Academics_General/Sem-5/SE/lab7/SELABS/Lab-7/test_parking_fee.py", line 29, in test_format_plate_no_crash
+    |   File "/home/d3va/Downloads/Academics_General/Sem-5/SE/lab7/SELABS/Lab-7/baseline/fuzz_snapshot.py", line 29, in test_format_plate_no_crash
     |     assert result is None or (isinstance(result, str) and len(result) == 13)
     | AssertionError: assert ('00   ' is None or (True and 5 == 13))
     |  +  where True = isinstance('00   ', str)
@@ -76,7 +76,7 @@ __________________________ test_format_plate_no_crash __________________________
     | )
     +---------------- 2 ----------------
     | Traceback (most recent call last):
-    |   File "/home/d3va/Downloads/Academics_General/Sem-5/SE/lab7/SELABS/Lab-7/test_parking_fee.py", line 28, in test_format_plate_no_crash
+    |   File "/home/d3va/Downloads/Academics_General/Sem-5/SE/lab7/SELABS/Lab-7/baseline/fuzz_snapshot.py", line 28, in test_format_plate_no_crash
     |     result = format_plate(value)
     |   File "/home/d3va/Downloads/Academics_General/Sem-5/SE/lab7/SELABS/Lab-7/baseline/parking_fee.py", line 14, in format_plate
     |     return p[0] + p[1] + " " + p[2:4] + " " + p[4:6] + " " + p[6:10]
@@ -87,7 +87,7 @@ __________________________ test_format_plate_no_crash __________________________
     | )
     +---------------- 3 ----------------
     | Traceback (most recent call last):
-    |   File "/home/d3va/Downloads/Academics_General/Sem-5/SE/lab7/SELABS/Lab-7/test_parking_fee.py", line 28, in test_format_plate_no_crash
+    |   File "/home/d3va/Downloads/Academics_General/Sem-5/SE/lab7/SELABS/Lab-7/baseline/fuzz_snapshot.py", line 28, in test_format_plate_no_crash
     |     result = format_plate(value)
     |   File "/home/d3va/Downloads/Academics_General/Sem-5/SE/lab7/SELABS/Lab-7/baseline/parking_fee.py", line 13, in format_plate
     |     p = plate.upper()
@@ -98,7 +98,7 @@ __________________________ test_format_plate_no_crash __________________________
     | )
     +------------------------------------
 =========================== short test summary info ============================
-FAILED ../test_parking_fee.py::test_minutes_parked_no_crash - ExceptionGroup:...
-FAILED ../test_parking_fee.py::test_hourly_rate_no_crash - ExceptionGroup: Hy...
-FAILED ../test_parking_fee.py::test_format_plate_no_crash - ExceptionGroup: H...
-3 failed in 0.50s
+FAILED fuzz_snapshot.py::test_minutes_parked_no_crash - ExceptionGroup: Hypot...
+FAILED fuzz_snapshot.py::test_hourly_rate_no_crash - ExceptionGroup: Hypothes...
+FAILED fuzz_snapshot.py::test_format_plate_no_crash - ExceptionGroup: Hypothe...
+3 failed in 0.48s
