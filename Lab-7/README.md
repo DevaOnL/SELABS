@@ -49,7 +49,7 @@ zero. Backward times are rejected because the input does not include a date.
 - Fixed helpers: **79 passing test instances**, including 14 Hypothesis
   property instances and 65 explicit regression cases.
 - Command-line checks: **9 passed**.
-- Complete suite: **88 passed in 4.68 seconds** in the saved run.
+- Complete suite: **88 passed in 4.61 seconds** in the saved run.
 
 A Hypothesis property executes multiple generated examples; the pytest test
 count is not the generated-input count. Each property uses a maximum of 500
@@ -88,24 +88,37 @@ always returns `None` fails the generated valid-input properties.
 | 5: Fixed application | [Valid run](screenshots/after_application_valid.png), [invalid run](screenshots/after_application_invalid.png) |
 | 6: Passing tests | [Original three properties](screenshots/after_pytest_summary.png), [complete suite](screenshots/after_all_tests.png) |
 
-Raw, unedited output is under `reports/before/` and `reports/after/`.
-The manifests record commands, supplied input, exit codes, UTC timestamps,
-and SHA-256 hashes. Screenshots are browser captures of those saved outputs,
-reproduced verbatim with command metadata above them. They are not photographs
-of an interactive desktop terminal.
+The seven PNGs are direct Grim screenshots of commands running in a live,
+fullscreen Foot terminal with the current user theme. The terminal shows the
+working directory, commands, typed application inputs, results, and exit codes.
+
+Matching terminal transcripts are under `reports/before/` and `reports/after/`.
+The `terminal_*.ansi` files preserve the raw PTY output, including terminal
+control sequences; the corresponding `.txt` files contain readable transcripts.
+Detailed failure tracebacks remain in `reports/before/pytest.txt`.
+
+[Baseline capture metadata](reports/before/screenshots.json) and
+[fixed-application capture metadata](reports/after/screenshots.json) record the
+capture time, fullscreen state, Foot process, Grim capture geometry, image
+hashes, and matching transcript hashes. The command manifests also retain
+source/test hashes and expected exit codes.
 
 ## Reproduce the evidence and report
 
-Install the extra report tools only if rebuilding screenshots or the PDF:
+Install the extra report tools only if rebuilding screenshots or the PDF.
+Live capture requires a running Hyprland desktop with Foot, Grim, and Bash
+installed. The capture script uses Hyprland 0.56's Lua dispatch interface,
+loads the current Foot configuration, and enlarges the terminal font for
+readability. It opens a temporary fullscreen workspace and restores the
+previous workspace and focused window after capture.
 
 ```bash
 python -m pip install -r requirements-report.txt
-python -m playwright install chromium
 python tools/capture_evidence.py --phase before
 python tools/capture_evidence.py --phase after
 python tools/replay_counterexamples.py
-python tools/render_screenshots.py --phase before
-python tools/render_screenshots.py --phase after
+python tools/capture_terminal_screenshots.py --phase before
+python tools/capture_terminal_screenshots.py --phase after
 python tools/build_report.py
 python tools/verify_submission.py --write-report
 ```

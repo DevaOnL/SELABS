@@ -1,5 +1,10 @@
+clear
+d3va@legion:baseline$ pwd
+/home/d3va/Downloads/Academics_General/Sem-5/SE/lab7/SELABS/Lab-7/baseline
+d3va@legion:baseline$ python -u parking_fee.py
 ==== Running minutes_parked ====
-Enter entry and exit time (e.g. 09:30-11:45): Traceback (most recent call last):
+Enter entry and exit time (e.g. 09:30-11:45):
+Traceback (most recent call last):
   File "/home/d3va/Downloads/Academics_General/Sem-5/SE/lab7/SELABS/Lab-7/baseline/parking_fee.py", line 33, in <module>
     main()
     ~~~~^^
@@ -9,3 +14,6 @@ Enter entry and exit time (e.g. 09:30-11:45): Traceback (most recent call last):
     entry, exit_time = times.split('-')
     ^^^^^^^^^^^^^^^^
 ValueError: not enough values to unpack (expected 2, got 1)
+d3va@legion:baseline$ printf 'Exit code: %s\n' "$?"
+Exit code: 1
+d3va@legion:baseline$

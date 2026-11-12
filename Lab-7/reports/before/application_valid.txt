@@ -1,8 +1,18 @@
+clear
+d3va@legion:baseline$ pwd
+/home/d3va/Downloads/Academics_General/Sem-5/SE/lab7/SELABS/Lab-7/baseline
+d3va@legion:baseline$ python -u parking_fee.py
 ==== Running minutes_parked ====
-Enter entry and exit time (e.g. 09:30-11:45): Minutes Parked: 135
+Enter entry and exit time (e.g. 09:30-11:45): 09:30-11:45
+Minutes Parked: 135
 
 ==== Running hourly_rate ====
-Enter vehicle type (bike/car/truck): Hourly Rate: 30
+Enter vehicle type (bike/car/truck): car
+Hourly Rate: 30
 
 ==== Running format_plate ====
-Enter a number plate (e.g. ka01ab1234): Formatted Plate: KA 01 AB 1234
+Enter a number plate (e.g. ka01ab1234): ka01ab1234
+Formatted Plate: KA 01 AB 1234
+d3va@legion:baseline$ printf 'Exit code: %s\n' "$?"
+Exit code: 0
+d3va@legion:baseline$

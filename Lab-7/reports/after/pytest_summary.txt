@@ -1,2 +1,9 @@
-...                                                                      [100%]
-3 passed in 0.67s
+clear
+d3va@legion:Lab-7$ pwd
+/home/d3va/Downloads/Academics_General/Sem-5/SE/lab7/SELABS/Lab-7
+d3va@legion:Lab-7$ python -m pytest test_parking_fee.py -k no_crash -q --tb=no --color=yes
+...                                                                                     [100%]
+3 passed, 76 deselected in 0.64s
+d3va@legion:Lab-7$ printf 'Exit code: %s\n' "$?"
+Exit code: 0
+d3va@legion:Lab-7$

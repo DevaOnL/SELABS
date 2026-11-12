@@ -10,23 +10,29 @@
   "commands": [
     {
       "name": "application_valid",
-      "started_utc": "2026-11-12T07:17:08.199551+00:00",
+      "started_utc": "2026-11-12T12:27:16.148575+00:00",
       "command": "python -u parking_fee.py",
       "cwd_relative_to_lab": "baseline",
       "stdin": "09:30-11:45\ncar\nka01ab1234\n",
       "exit_code": 0,
       "expected_exit_code": 0,
-      "output_sha256": "594322524e8065682826747813c707c447fc3a6385ef05d890e3fe5d2728d43d"
+      "output_kind": "live terminal transcript with commands and typed input",
+      "output_sha256": "5bf1cb73c600d2a0ed24747821a9750c186949df03c5282bff0f0f30186dbd4f",
+      "raw_terminal_file": "reports/before/terminal_application_valid.ansi",
+      "raw_terminal_sha256": "3baf9db67025bbd0a21458c84d6a444daa6650b53644f90a7ff2a0b098ff4f10"
     },
     {
       "name": "application_invalid",
-      "started_utc": "2026-11-12T07:17:08.213146+00:00",
+      "started_utc": "2026-11-12T12:27:17.069044+00:00",
       "command": "python -u parking_fee.py",
       "cwd_relative_to_lab": "baseline",
-      "stdin": "\nhovercraft\nx\n",
+      "stdin": "\n",
       "exit_code": 1,
       "expected_exit_code": 1,
-      "output_sha256": "a6bba3d5f4cf6fea648d4be8cce11534ff3b89895cd7ef89602157d76f0dd931"
+      "output_kind": "live terminal transcript with commands and typed input",
+      "output_sha256": "0402029f7e238ae7ae70cf47c59715f5c945c63a370328a617b94f2060b30aed",
+      "raw_terminal_file": "reports/before/terminal_application_invalid.ansi",
+      "raw_terminal_sha256": "36b8c8ed98194a6e54b1c4e8fae23463daa508a1b439eb488b2d9e0d5aabfe11"
     },
     {
       "name": "pytest",
@@ -40,13 +46,16 @@
     },
     {
       "name": "pytest_summary",
-      "started_utc": "2026-11-12T07:17:08.964846+00:00",
-      "command": "python -m pytest --import-mode=importlib fuzz_snapshot.py::test_minutes_parked_no_crash fuzz_snapshot.py::test_hourly_rate_no_crash fuzz_snapshot.py::test_format_plate_no_crash -q --tb=no --color=no",
+      "started_utc": "2026-11-12T12:27:17.907523+00:00",
+      "command": "python -m pytest --import-mode=importlib fuzz_snapshot.py -q --tb=no --color=yes",
       "cwd_relative_to_lab": "baseline",
       "stdin": null,
       "exit_code": 1,
       "expected_exit_code": 1,
-      "output_sha256": "fc52174e7becbae21068c31cffe37357427e22e3defe320ce4af713df621fa0e"
+      "output_kind": "live terminal transcript with commands and typed input",
+      "output_sha256": "4899c758d4b977be52b8e6f83591744f80ba7a38e20819eb0f90582b5b877324",
+      "raw_terminal_file": "reports/before/terminal_pytest_summary.ansi",
+      "raw_terminal_sha256": "4a844f6c1fce3285f4435414cd0a1b7770ead9dbd0e5bfa71b4b8df33b9ce1cb"
     }
   ]
 }

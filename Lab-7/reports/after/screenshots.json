@@ -1,0 +1,93 @@
+{
+  "phase": "after",
+  "captures": [
+    {
+      "name": "application_valid",
+      "captured_utc": "2026-11-12T12:27:27.418049+00:00",
+      "terminal": "foot",
+      "terminal_pid": 190755,
+      "capture_tool": "grim",
+      "capture_kind": "live native fullscreen terminal window",
+      "fullscreen": true,
+      "theme": "current user Foot configuration",
+      "window_address": "0x55c24b068f20",
+      "geometry": "0,0 1600x1000",
+      "image_dimensions": [
+        2560,
+        1600
+      ],
+      "file": "screenshots/after_application_valid.png",
+      "sha256": "751e6b075ba8f8c01d180e7e24c3919a125377dbb17f4619a3f4f67b12a19efc",
+      "command": "python -u parking_fee.py",
+      "exit_code": 0,
+      "output_file": "reports/after/application_valid.txt",
+      "output_sha256": "b25f4b90ebd5ad820e59033e8ea31d52c7dd91ba0f70618363cdf229a7853826"
+    },
+    {
+      "name": "application_invalid",
+      "captured_utc": "2026-11-12T12:27:28.354305+00:00",
+      "terminal": "foot",
+      "terminal_pid": 190755,
+      "capture_tool": "grim",
+      "capture_kind": "live native fullscreen terminal window",
+      "fullscreen": true,
+      "theme": "current user Foot configuration",
+      "window_address": "0x55c24b068f20",
+      "geometry": "0,0 1600x1000",
+      "image_dimensions": [
+        2560,
+        1600
+      ],
+      "file": "screenshots/after_application_invalid.png",
+      "sha256": "0263c9b87ef56feef46fcebe11df2ad6083df4e5df5280f9cbd290eafaeff873",
+      "command": "python -u parking_fee.py",
+      "exit_code": 0,
+      "output_file": "reports/after/application_invalid.txt",
+      "output_sha256": "41555e7ed940513f1131b84595a95e7ff69f56ebfc7e80bda1f4f26ab5124040"
+    },
+    {
+      "name": "pytest_summary",
+      "captured_utc": "2026-11-12T12:27:30.000182+00:00",
+      "terminal": "foot",
+      "terminal_pid": 190755,
+      "capture_tool": "grim",
+      "capture_kind": "live native fullscreen terminal window",
+      "fullscreen": true,
+      "theme": "current user Foot configuration",
+      "window_address": "0x55c24b068f20",
+      "geometry": "0,0 1600x1000",
+      "image_dimensions": [
+        2560,
+        1600
+      ],
+      "file": "screenshots/after_pytest_summary.png",
+      "sha256": "8988a7c475c79a0516b2e3d75358a19a8d368ce566fefb6c09e824db40604bc8",
+      "command": "python -m pytest test_parking_fee.py -k no_crash -q --tb=no --color=yes",
+      "exit_code": 0,
+      "output_file": "reports/after/pytest_summary.txt",
+      "output_sha256": "0457ebc8fd40f35d58d7ed30740ba40793d6bd49db8743fee37148f25dbe595c"
+    },
+    {
+      "name": "all_tests",
+      "captured_utc": "2026-11-12T12:27:35.595044+00:00",
+      "terminal": "foot",
+      "terminal_pid": 190755,
+      "capture_tool": "grim",
+      "capture_kind": "live native fullscreen terminal window",
+      "fullscreen": true,
+      "theme": "current user Foot configuration",
+      "window_address": "0x55c24b068f20",
+      "geometry": "0,0 1600x1000",
+      "image_dimensions": [
+        2560,
+        1600
+      ],
+      "file": "screenshots/after_all_tests.png",
+      "sha256": "d9021643b8c8c6a49e4e49c0b6cd448bf9c748fbaace6d4609ab8a0872d9a90f",
+      "command": "python -m pytest -q --color=yes",
+      "exit_code": 0,
+      "output_file": "reports/after/all_tests.txt",
+      "output_sha256": "2ce415c43c00a1b77bb18fd56edf38fa6a8ca4fd82b2f9dfe3459d4c5e823a12"
+    }
+  ]
+}

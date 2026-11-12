@@ -26,6 +26,8 @@ def verify(write_report=False):
     require(sha256(ROOT / "baseline/test_parking_fee.py.txt") == source["files"]["test_parking_fee.py"],
             "Original test starter differs from the recorded upstream source")
     checked_commands = 0
+    native_captures = 0
+    native_artifacts = []
     for phase in ["before", "after"]:
         report_dir = ROOT / "reports" / phase
         manifest = json.loads((report_dir / "manifest.json").read_text())
@@ -44,7 +46,28 @@ def verify(write_report=False):
                     f"Changed command output: {path}")
             require(record["exit_code"] == record["expected_exit_code"],
                     f"Unexpected command exit: {path}")
+            if "raw_terminal_file" in record:
+                raw = ROOT / record["raw_terminal_file"]
+                require(sha256(raw) == record["raw_terminal_sha256"],
+                        f"Changed raw terminal transcript: {raw}")
+                native_artifacts.append(raw)
             checked_commands += 1
+        capture_path = report_dir / "screenshots.json"
+        capture_manifest = json.loads(capture_path.read_text())
+        expected_count = 3 if phase == "before" else 4
+        require(len(capture_manifest["captures"]) == expected_count,
+                f"Incomplete native captures: {phase}")
+        for capture in capture_manifest["captures"]:
+            require(capture["terminal"] == "foot"
+                    and capture["capture_tool"] == "grim"
+                    and capture["fullscreen"],
+                    "A screenshot is missing native fullscreen capture metadata")
+            require(sha256(ROOT / capture["file"]) == capture["sha256"],
+                    f"Changed native screenshot: {capture['file']}")
+            require(sha256(ROOT / capture["output_file"]) == capture["output_sha256"],
+                    f"Changed live transcript: {capture['output_file']}")
+            native_captures += 1
+        native_artifacts.append(capture_path)
     baseline_log = (ROOT / "reports/before/pytest_summary.txt").read_text()
     require("3 failed" in baseline_log, "Missing original three failing properties")
     passing_log = (ROOT / "reports/after/all_tests.txt").read_text()
@@ -75,6 +98,7 @@ def verify(write_report=False):
         ROOT / ".gitattributes", ROOT / ".gitignore",
         *[ROOT / "screenshots" / name for name in screenshots],
         *sorted((ROOT / "tools").glob("*.py")),
+        *native_artifacts,
     ]
     result = {
         "verified_utc": datetime.now(timezone.utc).isoformat(),
@@ -83,6 +107,7 @@ def verify(write_report=False):
         "baseline_failing_tests": 3,
         "final_passing_tests": passing_tests,
         "screenshots": len(screenshots),
+        "native_fullscreen_captures": native_captures,
         "artifact_sha256": {
             str(path.relative_to(ROOT)): sha256(path) for path in artifact_paths
         },
@@ -97,7 +122,8 @@ def verify(write_report=False):
         require(saved["artifact_sha256"] == result["artifact_sha256"],
                 "An artifact changed after the saved verification; rebuild and verify again")
     print(f"Verified {checked_commands} saved commands, 3 baseline failures, "
-          f"{passing_tests} final passes, {len(screenshots)} PNGs, PDF, and README links.")
+          f"{passing_tests} final passes, {native_captures} live fullscreen PNGs, "
+          "raw terminal transcripts, PDF, and README links.")
     return result
 
 

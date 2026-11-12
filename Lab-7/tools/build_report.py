@@ -2,6 +2,7 @@
 
 from datetime import datetime
 import json
+import re
 from pathlib import Path
 from xml.sax.saxutils import escape
 
@@ -65,7 +66,8 @@ def footer(canvas, doc):
 
 def build():
     after = json.loads((ROOT / "reports/after/manifest.json").read_text())
-    result_summary = (ROOT / "reports/after/all_tests.txt").read_text().strip().splitlines()[-1]
+    test_output = (ROOT / "reports/after/all_tests.txt").read_text()
+    result_summary = re.findall(r"\b\d+ passed[^\r\n]*", test_output)[-1]
     # The complete submission uses one four-column master table. Body text
     # and evidence remain in its section cells, following the assignment guide.
     body = [
@@ -106,9 +108,7 @@ def build():
             "Rates retain bike=10, car=30, truck=60, with surrounding whitespace and case normalization. Plates accept the lab's AA99AA9999 syntax in compact or single-space grouped form and produce uppercase AA 99 AA 9999.",
         ], []),
         ("Step 5: Fix and rerun the application", [
-            "The helpers check types before using string methods. Complete regex matches prevent partial parsing; explicit clock checks reject invalid values; safe dictionary lookup handles unknown vehicles; plate validation precedes formatting.",
-            "The CLI distinguishes None from a valid zero and prints a useful error for each invalid entry, continuing to the remaining prompts. EOF and Ctrl+C are handled without tracebacks.",
-            "The normal example retains its original outputs. Invalid input now produces messages for all three helpers and exits successfully.",
+            "The helpers validate types, complete formats, clock ranges, and same-day order. The CLI explains invalid entries and continues; EOF and Ctrl+C exit cleanly. A valid zero is preserved, and the original sample outputs remain correct.",
         ], [("Screenshot 4: Fixed application, valid input", "after_application_valid.png"),
             ("Screenshot 5: Fixed application, invalid input", "after_application_invalid.png")]),
         ("Step 6: Rerun the tests", [
@@ -119,7 +119,7 @@ def build():
         ("Deliverables and evidence", [
             "PDF: PES1UG24CS145_SE_Lab7.pdf. Fixed application: parking_fee.py. Completed Hypothesis suite: test_parking_fee.py. Additional CLI tests: test_cli.py.",
             "Supporting files: INPUT_CONTRACT.md, BUG_ANALYSIS.md, unchanged baseline, raw reports, screenshot PNGs, and tools to reproduce the evidence and this PDF.",
-            "Screenshots are browser captures of saved command output reproduced verbatim. The command, supplied input, working directory, and exit code appear above the output. Manifests record UTC timestamps and SHA-256 hashes for the application, tests, and output.",
+            "Screenshots are direct Grim captures of a live fullscreen Foot terminal using the current user theme. Commands, typed inputs, working directories, results, and exit codes are visible in the terminal. Capture manifests record UTC timestamps, window geometry, PNG hashes, and matching terminal transcript hashes.",
             "Fuzzing identified crashes and malformed output with small examples. Boundary checks added silent validation failures. The revised suite checks both rejection and correct handling of valid inputs; passing it does not prove correctness for all possible inputs.",
         ], []),
     ]

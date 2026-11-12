@@ -1,0 +1,13 @@
+clear
+[?2004l[H[2J[3J[?2004hd3va@legion:baseline$ pwd
+[?2004l/home/d3va/Downloads/Academics_General/Sem-5/SE/lab7/SELABS/Lab-7/baseline
+[?2004hd3va@legion:baseline$ python -m pytest --import-mode=importlib fuzz_snapshot.py -q --tb=no --color=yes
+[?2004l[31mF[0m[31mF[0m[31mF[0m[31m                                                                                     [100%][0m
+[36m[1m=================================== short test summary info ===================================[0m
+[31mFAILED[0m fuzz_snapshot.py::[1mtest_minutes_parked_no_crash[0m - ExceptionGroup: Hypothesis found 2 distinct failures. (2 sub-exceptions)
+[31mFAILED[0m fuzz_snapshot.py::[1mtest_hourly_rate_no_crash[0m - ExceptionGroup: Hypothesis found 2 distinct failures. (2 sub-exceptions)
+[31mFAILED[0m fuzz_snapshot.py::[1mtest_format_plate_no_crash[0m - ExceptionGroup: Hypothesis found 3 distinct failures. (3 sub-exceptions)
+[31m[31m[1m3 failed[0m[31m in 0.42s[0m[0m
+[?2004hd3va@legion:baseline$ printf 'Exit code: %s\n' "$?"
+[?2004lExit code: 1
+[?2004hd3va@legion:baseline$ 

@@ -10,23 +10,29 @@
   "commands": [
     {
       "name": "application_valid",
-      "started_utc": "2026-11-12T07:03:42.586234+00:00",
+      "started_utc": "2026-11-12T12:27:26.644406+00:00",
       "command": "python -u parking_fee.py",
       "cwd_relative_to_lab": ".",
       "stdin": "09:30-11:45\ncar\nka01ab1234\n",
       "exit_code": 0,
       "expected_exit_code": 0,
-      "output_sha256": "594322524e8065682826747813c707c447fc3a6385ef05d890e3fe5d2728d43d"
+      "output_kind": "live terminal transcript with commands and typed input",
+      "output_sha256": "b25f4b90ebd5ad820e59033e8ea31d52c7dd91ba0f70618363cdf229a7853826",
+      "raw_terminal_file": "reports/after/terminal_application_valid.ansi",
+      "raw_terminal_sha256": "c75e78bc39d503674e79bf6b7bfbce3d57609dfc7e061374b510960d24274d8d"
     },
     {
       "name": "application_invalid",
-      "started_utc": "2026-11-12T07:03:42.602413+00:00",
+      "started_utc": "2026-11-12T12:27:27.567670+00:00",
       "command": "python -u parking_fee.py",
       "cwd_relative_to_lab": ".",
       "stdin": "\nhovercraft\nx\n",
       "exit_code": 0,
       "expected_exit_code": 0,
-      "output_sha256": "e460f713a1dfdd304e6c392aceba4de08c40564771e056acdeac03aa02f6377c"
+      "output_kind": "live terminal transcript with commands and typed input",
+      "output_sha256": "41555e7ed940513f1131b84595a95e7ff69f56ebfc7e80bda1f4f26ab5124040",
+      "raw_terminal_file": "reports/after/terminal_application_invalid.ansi",
+      "raw_terminal_sha256": "09dd421604399e5649684b2400793c45b1082ee0d579371d34aa8aaba63fdb46"
     },
     {
       "name": "pytest",
@@ -40,23 +46,29 @@
     },
     {
       "name": "pytest_summary",
-      "started_utc": "2026-11-12T07:03:44.413588+00:00",
-      "command": "python -m pytest --import-mode=importlib test_parking_fee.py::test_minutes_parked_no_crash test_parking_fee.py::test_hourly_rate_no_crash test_parking_fee.py::test_format_plate_no_crash -q --tb=no --color=no",
+      "started_utc": "2026-11-12T12:27:28.494290+00:00",
+      "command": "python -m pytest test_parking_fee.py -k no_crash -q --tb=no --color=yes",
       "cwd_relative_to_lab": ".",
       "stdin": null,
       "exit_code": 0,
       "expected_exit_code": 0,
-      "output_sha256": "3711bd02b977e923db01c9f2f53cd127eaa6cc10d9659f7db2dc5eebd8309385"
+      "output_kind": "live terminal transcript with commands and typed input",
+      "output_sha256": "0457ebc8fd40f35d58d7ed30740ba40793d6bd49db8743fee37148f25dbe595c",
+      "raw_terminal_file": "reports/after/terminal_pytest_summary.ansi",
+      "raw_terminal_sha256": "4d5bf20c3405e556a0703964aca38e925f17d3f3efd385f31d0f9410378bd6f6"
     },
     {
       "name": "all_tests",
-      "started_utc": "2026-11-12T07:03:45.315886+00:00",
-      "command": "python -m pytest -q --color=no",
+      "started_utc": "2026-11-12T12:27:30.120465+00:00",
+      "command": "python -m pytest -q --color=yes",
       "cwd_relative_to_lab": ".",
       "stdin": null,
       "exit_code": 0,
       "expected_exit_code": 0,
-      "output_sha256": "bec4a0a992d2352a25a291c32465a225fc05c23816f9c5e2c188cf3ea7043422"
+      "output_kind": "live terminal transcript with commands and typed input",
+      "output_sha256": "2ce415c43c00a1b77bb18fd56edf38fa6a8ca4fd82b2f9dfe3459d4c5e823a12",
+      "raw_terminal_file": "reports/after/terminal_all_tests.ansi",
+      "raw_terminal_sha256": "3a38a9e421131c721353963c4499697957dc9a1b6eff5dce38c96d6eb77f936f"
     },
     {
       "name": "counterexamples",

@@ -1,8 +1,18 @@
+clear
+d3va@legion:Lab-7$ pwd
+/home/d3va/Downloads/Academics_General/Sem-5/SE/lab7/SELABS/Lab-7
+d3va@legion:Lab-7$ python -u parking_fee.py
 ==== Running minutes_parked ====
-Enter entry and exit time (e.g. 09:30-11:45): Invalid time range. Use HH:MM-HH:MM in same-day order.
+Enter entry and exit time (e.g. 09:30-11:45):
+Invalid time range. Use HH:MM-HH:MM in same-day order.
 
 ==== Running hourly_rate ====
-Enter vehicle type (bike/car/truck): Invalid vehicle type. Choose bike, car, or truck.
+Enter vehicle type (bike/car/truck): hovercraft
+Invalid vehicle type. Choose bike, car, or truck.
 
 ==== Running format_plate ====
-Enter a number plate (e.g. ka01ab1234): Invalid number plate. Use KA01AB1234 or KA 01 AB 1234 format.
+Enter a number plate (e.g. ka01ab1234): x
+Invalid number plate. Use KA01AB1234 or KA 01 AB 1234 format.
+d3va@legion:Lab-7$ printf 'Exit code: %s\n' "$?"
+Exit code: 0
+d3va@legion:Lab-7$

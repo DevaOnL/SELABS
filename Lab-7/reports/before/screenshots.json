@@ -1,0 +1,71 @@
+{
+  "phase": "before",
+  "captures": [
+    {
+      "name": "application_valid",
+      "captured_utc": "2026-11-12T12:27:16.919659+00:00",
+      "terminal": "foot",
+      "terminal_pid": 190619,
+      "capture_tool": "grim",
+      "capture_kind": "live native fullscreen terminal window",
+      "fullscreen": true,
+      "theme": "current user Foot configuration",
+      "window_address": "0x55c249bb5860",
+      "geometry": "0,0 1600x1000",
+      "image_dimensions": [
+        2560,
+        1600
+      ],
+      "file": "screenshots/before_application_valid.png",
+      "sha256": "4e2117b6361b063869610779d01b5989a28b427c307992c7351931d2a8a7c2ec",
+      "command": "python -u parking_fee.py",
+      "exit_code": 0,
+      "output_file": "reports/before/application_valid.txt",
+      "output_sha256": "5bf1cb73c600d2a0ed24747821a9750c186949df03c5282bff0f0f30186dbd4f"
+    },
+    {
+      "name": "application_invalid",
+      "captured_utc": "2026-11-12T12:27:17.755838+00:00",
+      "terminal": "foot",
+      "terminal_pid": 190619,
+      "capture_tool": "grim",
+      "capture_kind": "live native fullscreen terminal window",
+      "fullscreen": true,
+      "theme": "current user Foot configuration",
+      "window_address": "0x55c249bb5860",
+      "geometry": "0,0 1600x1000",
+      "image_dimensions": [
+        2560,
+        1600
+      ],
+      "file": "screenshots/before_application_invalid.png",
+      "sha256": "b5da14f2c172554c7bf8e99e0e0967bdd77c8119d258554ab0367effe2b6a26e",
+      "command": "python -u parking_fee.py",
+      "exit_code": 1,
+      "output_file": "reports/before/application_invalid.txt",
+      "output_sha256": "0402029f7e238ae7ae70cf47c59715f5c945c63a370328a617b94f2060b30aed"
+    },
+    {
+      "name": "pytest_summary",
+      "captured_utc": "2026-11-12T12:27:19.146117+00:00",
+      "terminal": "foot",
+      "terminal_pid": 190619,
+      "capture_tool": "grim",
+      "capture_kind": "live native fullscreen terminal window",
+      "fullscreen": true,
+      "theme": "current user Foot configuration",
+      "window_address": "0x55c249bb5860",
+      "geometry": "0,0 1600x1000",
+      "image_dimensions": [
+        2560,
+        1600
+      ],
+      "file": "screenshots/before_pytest_summary.png",
+      "sha256": "557e8427619a3a7e4becc7d58bccd1e4988521931849de777a96f398adfa6ec8",
+      "command": "python -m pytest --import-mode=importlib fuzz_snapshot.py -q --tb=no --color=yes",
+      "exit_code": 1,
+      "output_file": "reports/before/pytest_summary.txt",
+      "output_sha256": "4899c758d4b977be52b8e6f83591744f80ba7a38e20819eb0f90582b5b877324"
+    }
+  ]
+}

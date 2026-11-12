@@ -1,3 +1,10 @@
-........................................................................ [ 81%]
-................                                                         [100%]
-88 passed in 4.68s
+clear
+d3va@legion:Lab-7$ pwd
+/home/d3va/Downloads/Academics_General/Sem-5/SE/lab7/SELABS/Lab-7
+d3va@legion:Lab-7$ python -m pytest -q --color=yes
+....................................................................................... [ 98%]
+.                                                                                       [100%]
+88 passed in 4.61s
+d3va@legion:Lab-7$ printf 'Exit code: %s\n' "$?"
+Exit code: 0
+d3va@legion:Lab-7$
