@@ -1,10 +1,27 @@
+"""Parking input helpers and an interactive demonstration."""
+
+import re
+
+_TIME_RANGE = re.compile(r"([0-9]{2}):([0-9]{2})-([0-9]{2}):([0-9]{2})")
+
 RATES = {"bike": 10, "car": 30, "truck": 60}
 
 def minutes_parked(times):
-    entry, exit_time = times.split('-')
-    h1, m1 = entry.split(':')
-    h2, m2 = exit_time.split(':')
-    return (int(h2) * 60 + int(m2)) - (int(h1) * 60 + int(m1))
+    """Return same-day elapsed minutes, or None for invalid HH:MM-HH:MM input."""
+    if not isinstance(times, str):
+        return None
+    match = _TIME_RANGE.fullmatch(times.strip())
+    if match is None:
+        return None
+    h1, m1, h2, m2 = map(int, match.groups())
+    if h1 > 23 or h2 > 23 or m1 > 59 or m2 > 59:
+        return None
+    entry = h1 * 60 + m1
+    departure = h2 * 60 + m2
+    if departure < entry:
+        return None
+    return departure - entry
+
 
 def hourly_rate(vehicle):
     return RATES[vehicle.strip().lower()]
