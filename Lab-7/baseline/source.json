@@ -1,0 +1,9 @@
+{
+  "repository": "https://github.com/SETAPESU26/L6_L7_19_parking_fee",
+  "commit": "fef20d42191cdd992b14c5717db612b929c2cfd0",
+  "directory": "Lab 7",
+  "files": {
+    "parking_fee.py": "0a8064d5ab66236b9a15de16bc0ef60c062d08f9155c88d703fd3cac4aa1b56e",
+    "test_parking_fee.py": "2ae2e89667fffaa13e33a8c6b66cfecc78cfc48d26fdcbfcb8ba5a71b308a2c5"
+  }
+}
