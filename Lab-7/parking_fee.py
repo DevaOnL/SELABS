@@ -24,7 +24,10 @@ def minutes_parked(times):
 
 
 def hourly_rate(vehicle):
-    return RATES[vehicle.strip().lower()]
+    """Return a supported vehicle's hourly rate, or None for invalid input."""
+    if not isinstance(vehicle, str):
+        return None
+    return RATES.get(vehicle.strip().lower())
 
 def format_plate(plate):
     p = plate.upper()

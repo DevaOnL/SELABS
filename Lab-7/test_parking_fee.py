@@ -50,3 +50,23 @@ def test_format_plate_no_crash(value):
 def test_minutes_parked_regressions(value, expected):
     """Keep clock boundaries and silent baseline failures visible."""
     assert minutes_parked(value) == expected
+
+
+@pytest.mark.parametrize(("value", "expected"), [
+    ("bike", 10),
+    ("car", 30),
+    ("truck", 60),
+    (" BIKE ", 10),
+    ("CaR", 30),
+    ("\tTruck\n", 60),
+    ("", None),
+    ("   ", None),
+    ("hovercraft", None),
+    ("car truck", None),
+    ("cars", None),
+    (None, None),
+    (123, None),
+])
+def test_hourly_rate_regressions(value, expected):
+    """Preserve prices and normalization while rejecting unknown vehicles."""
+    assert hourly_rate(value) == expected
