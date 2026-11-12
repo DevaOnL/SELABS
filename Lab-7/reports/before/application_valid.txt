@@ -1,0 +1,8 @@
+==== Running minutes_parked ====
+Enter entry and exit time (e.g. 09:30-11:45): Minutes Parked: 135
+
+==== Running hourly_rate ====
+Enter vehicle type (bike/car/truck): Hourly Rate: 30
+
+==== Running format_plate ====
+Enter a number plate (e.g. ka01ab1234): Formatted Plate: KA 01 AB 1234
