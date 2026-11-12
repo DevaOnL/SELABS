@@ -3,8 +3,11 @@
 import re
 
 _TIME_RANGE = re.compile(r"([0-9]{2}):([0-9]{2})-([0-9]{2}):([0-9]{2})")
+_PLATE_COMPACT = re.compile(r"([A-Za-z]{2})([0-9]{2})([A-Za-z]{2})([0-9]{4})")
+_PLATE_GROUPED = re.compile(r"([A-Za-z]{2}) ([0-9]{2}) ([A-Za-z]{2}) ([0-9]{4})")
 
 RATES = {"bike": 10, "car": 30, "truck": 60}
+
 
 def minutes_parked(times):
     """Return same-day elapsed minutes, or None for invalid HH:MM-HH:MM input."""
@@ -29,9 +32,17 @@ def hourly_rate(vehicle):
         return None
     return RATES.get(vehicle.strip().lower())
 
+
 def format_plate(plate):
-    p = plate.upper()
-    return p[0] + p[1] + " " + p[2:4] + " " + p[4:6] + " " + p[6:10]
+    """Normalize the lab's AA99AA9999 plate syntax, or return None."""
+    if not isinstance(plate, str):
+        return None
+    text = plate.strip()
+    match = _PLATE_COMPACT.fullmatch(text) or _PLATE_GROUPED.fullmatch(text)
+    if match is None:
+        return None
+    return " ".join(match.groups()).upper()
+
 
 def main():
     print("==== Running minutes_parked ====")

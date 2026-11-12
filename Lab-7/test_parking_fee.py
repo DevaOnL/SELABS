@@ -70,3 +70,27 @@ def test_minutes_parked_regressions(value, expected):
 def test_hourly_rate_regressions(value, expected):
     """Preserve prices and normalization while rejecting unknown vehicles."""
     assert hourly_rate(value) == expected
+
+
+@pytest.mark.parametrize(("value", "expected"), [
+    ("ka01ab1234", "KA 01 AB 1234"),
+    ("KA01AB1234", "KA 01 AB 1234"),
+    (" ka01ab1234 ", "KA 01 AB 1234"),
+    ("ka 01 ab 1234", "KA 01 AB 1234"),
+    ("KA 01 AB 1234", "KA 01 AB 1234"),
+    ("", None),
+    ("x", None),
+    ("00", None),
+    ("KA01AB123456", None),
+    ("KA01AB123", None),
+    ("KA-01-AB-1234", None),
+    ("KA01 AB1234", None),
+    ("KA  01 AB 1234", None),
+    ("KA\t01 AB 1234", None),
+    ("KA01AB１２３４", None),
+    ("KA01AB1234", None),
+    ("ß01AB1234", None),
+])
+def test_format_plate_regressions(value, expected):
+    """Reject partial plates and Unicode lookalikes before normalization."""
+    assert format_plate(value) == expected
