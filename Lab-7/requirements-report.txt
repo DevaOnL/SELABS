@@ -1,0 +1,4 @@
+-r requirements.txt
+coverage==7.17.2
+playwright==1.65.1
+reportlab==5.1.0
