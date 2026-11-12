@@ -45,20 +45,45 @@ def format_plate(plate):
 
 
 def main():
-    print("==== Running minutes_parked ====")
-    user_input = input("Enter entry and exit time (e.g. 09:30-11:45): ")
-    result = minutes_parked(user_input)
-    print("Minutes Parked:", result)
+    """Run the three demonstrations and explain invalid or interrupted input."""
+    steps = (
+        (
+            "minutes_parked",
+            "Enter entry and exit time (e.g. 09:30-11:45): ",
+            minutes_parked,
+            "Minutes Parked:",
+            "Invalid time range. Use HH:MM-HH:MM in same-day order.",
+        ),
+        (
+            "hourly_rate",
+            "Enter vehicle type (bike/car/truck): ",
+            hourly_rate,
+            "Hourly Rate:",
+            "Invalid vehicle type. Choose bike, car, or truck.",
+        ),
+        (
+            "format_plate",
+            "Enter a number plate (e.g. ka01ab1234): ",
+            format_plate,
+            "Formatted Plate:",
+            "Invalid number plate. Use KA01AB1234 or KA 01 AB 1234 format.",
+        ),
+    )
+    try:
+        for index, (name, prompt, handler, label, error) in enumerate(steps):
+            if index:
+                print()
+            print(f"==== Running {name} ====")
+            result = handler(input(prompt))
+            if result is None:
+                print(error)
+            else:
+                print(label, result)
+    except EOFError:
+        print("\nInput ended. Exiting.")
+    except KeyboardInterrupt:
+        print("\nInput cancelled. Exiting.")
 
-    print("\n==== Running hourly_rate ====")
-    user_input = input("Enter vehicle type (bike/car/truck): ")
-    result = hourly_rate(user_input)
-    print("Hourly Rate:", result)
-
-    print("\n==== Running format_plate ====")
-    user_input = input("Enter a number plate (e.g. ka01ab1234): ")
-    result = format_plate(user_input)
-    print("Formatted Plate:", result)
 
 if __name__ == "__main__":
     main()
