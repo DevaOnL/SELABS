@@ -168,3 +168,68 @@ def test_generated_valid_plates_are_normalized_and_idempotent(
 def test_generated_plate_suffix_is_never_silently_truncated(district, serial, extra):
     value = f"KA{district:02d}AB{serial:04d}"
     assert format_plate(value + "!" + extra) is None
+
+
+NON_STRING_INPUTS = st.recursive(
+    st.none() | st.booleans() | st.integers() | st.floats() | st.binary(),
+    lambda children: (
+        st.lists(children, max_size=5)
+        | st.dictionaries(st.text(max_size=10), children, max_size=5)
+    ),
+    max_leaves=15,
+)
+
+
+@pytest.mark.parametrize("helper", [minutes_parked, hourly_rate, format_plate],
+                         ids=lambda helper: helper.__name__)
+@settings(max_examples=500, deadline=None, derandomize=True)
+@given(value=NON_STRING_INPUTS)
+def test_non_string_python_values_are_rejected(helper, value):
+    """Missing, numeric, byte, and nested container inputs are invalid."""
+    assert helper(value) is None
+
+
+@settings(max_examples=500, deadline=None, derandomize=True)
+@given(st.integers(24, 99), st.booleans())
+def test_generated_out_of_range_hours_are_rejected(hour, at_entry):
+    value = f"{hour:02d}:00-23:59" if at_entry else f"00:00-{hour:02d}:00"
+    assert minutes_parked(value) is None
+
+
+@settings(max_examples=500, deadline=None, derandomize=True)
+@given(st.integers(60, 99), st.booleans())
+def test_generated_out_of_range_minutes_are_rejected(minute, at_entry):
+    value = f"00:{minute:02d}-23:59" if at_entry else f"00:00-23:{minute:02d}"
+    assert minutes_parked(value) is None
+
+
+@pytest.mark.parametrize("value", [
+    "09:30",
+    "09:30-11:45-12:00",
+    "09:30--11:45",
+    "-1:00-10:00",
+    "09:30-11:4",
+    "09:3-11:45",
+    "09:30\n-11:45",
+    "09:30-11:45\x00",
+    "09:30–11:45",
+    "09:30/11:45",
+    "09:30-11:4٥",
+    "09:30-11:45suffix",
+])
+def test_malformed_time_syntax_is_rejected(value):
+    assert minutes_parked(value) is None
+
+
+@pytest.mark.parametrize("value", [
+    "K101AB1234",
+    "KAAB011234",
+    "KA01A11234",
+    "KA01AB12C4",
+    "KA 01 AB 1234 suffix",
+    "KA01AB1234\x00",
+    "KA\n01 AB 1234",
+    "K A01AB1234",
+])
+def test_malformed_plate_groups_are_rejected(value):
+    assert format_plate(value) is None
