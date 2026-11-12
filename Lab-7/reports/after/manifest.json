@@ -1,0 +1,73 @@
+{
+  "python": "3.14.6 (main, Aug 10 2026, 06:36:12) [GCC 16.1.1 20260728]",
+  "dependencies": {
+    "hypothesis": "6.170.15",
+    "pytest": "9.2.0"
+  },
+  "phase": "after",
+  "application_sha256": "caca05aff671b2b2895b8d70c0b76c0e7ed310956308d035746e2376b64b9811",
+  "tests_sha256": "1405ac95eff4a6bf54d97a324e8340eb30625ecff86792a9103a442f76901592",
+  "commands": [
+    {
+      "name": "application_valid",
+      "started_utc": "2026-11-12T07:03:42.586234+00:00",
+      "command": "python -u parking_fee.py",
+      "cwd_relative_to_lab": ".",
+      "stdin": "09:30-11:45\ncar\nka01ab1234\n",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "output_sha256": "594322524e8065682826747813c707c447fc3a6385ef05d890e3fe5d2728d43d"
+    },
+    {
+      "name": "application_invalid",
+      "started_utc": "2026-11-12T07:03:42.602413+00:00",
+      "command": "python -u parking_fee.py",
+      "cwd_relative_to_lab": ".",
+      "stdin": "\nhovercraft\nx\n",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "output_sha256": "e460f713a1dfdd304e6c392aceba4de08c40564771e056acdeac03aa02f6377c"
+    },
+    {
+      "name": "pytest",
+      "started_utc": "2026-11-12T07:03:42.620622+00:00",
+      "command": "python -m pytest --import-mode=importlib test_parking_fee.py::test_minutes_parked_no_crash test_parking_fee.py::test_hourly_rate_no_crash test_parking_fee.py::test_format_plate_no_crash -q --tb=short --color=no",
+      "cwd_relative_to_lab": ".",
+      "stdin": null,
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "output_sha256": "481d9c5bd2f4da029a1b5a6be3fb6b6bbc3907c4611e3be7fa0a728e6e564ef3"
+    },
+    {
+      "name": "pytest_summary",
+      "started_utc": "2026-11-12T07:03:44.413588+00:00",
+      "command": "python -m pytest --import-mode=importlib test_parking_fee.py::test_minutes_parked_no_crash test_parking_fee.py::test_hourly_rate_no_crash test_parking_fee.py::test_format_plate_no_crash -q --tb=no --color=no",
+      "cwd_relative_to_lab": ".",
+      "stdin": null,
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "output_sha256": "3711bd02b977e923db01c9f2f53cd127eaa6cc10d9659f7db2dc5eebd8309385"
+    },
+    {
+      "name": "all_tests",
+      "started_utc": "2026-11-12T07:03:45.315886+00:00",
+      "command": "python -m pytest -q --color=no",
+      "cwd_relative_to_lab": ".",
+      "stdin": null,
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "output_sha256": "bec4a0a992d2352a25a291c32465a225fc05c23816f9c5e2c188cf3ea7043422"
+    },
+    {
+      "name": "counterexamples",
+      "started_utc": "2026-11-12T07:03:50.239833+00:00",
+      "command": "python tools/replay_counterexamples.py",
+      "cwd_relative_to_lab": ".",
+      "stdin": null,
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "output_sha256": "c25528947baa2a3051614ae33a4b13980d5b1171e784ecd185a04610036e56af"
+    }
+  ],
+  "cli_tests_sha256": "bcaacd4a72d73cd2c6958effd2724fff23cc04f9a33a7ac8bf0a2aa61dc80782"
+}

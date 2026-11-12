@@ -1,0 +1,33 @@
+minutes_parked(None) [Hypothesis]
+  baseline: AttributeError: 'NoneType' object has no attribute 'split'
+  current:  None
+minutes_parked('') [Hypothesis]
+  baseline: ValueError: not enough values to unpack (expected 2, got 1)
+  current:  None
+hourly_rate(None) [Hypothesis]
+  baseline: AttributeError: 'NoneType' object has no attribute 'strip'
+  current:  None
+hourly_rate('') [Hypothesis]
+  baseline: KeyError: ''
+  current:  None
+format_plate(None) [Hypothesis]
+  baseline: AttributeError: 'NoneType' object has no attribute 'upper'
+  current:  None
+format_plate('') [Hypothesis]
+  baseline: IndexError: string index out of range
+  current:  None
+format_plate('00') [Hypothesis]
+  baseline: '00   '
+  current:  None
+minutes_parked('25:00-26:00') [directed boundary]
+  baseline: 60
+  current:  None
+minutes_parked('11:00-10:00') [directed boundary]
+  baseline: -60
+  current:  None
+minutes_parked('09:60-10:00') [directed boundary]
+  baseline: 0
+  current:  None
+format_plate('KA01AB123456') [directed boundary]
+  baseline: 'KA 01 AB 1234'
+  current:  None

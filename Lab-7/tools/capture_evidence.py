@@ -3,6 +3,7 @@
 import argparse
 from datetime import datetime, timezone
 import hashlib
+from importlib.metadata import version
 import json
 from pathlib import Path
 import shlex
@@ -37,7 +38,10 @@ def capture(phase):
          1 if phase == "before" else 0),
     ]
     if phase == "after":
-        cases.append(("all_tests", ["-m", "pytest", "-q", "--color=no"], None, 0))
+        cases.extend([
+            ("all_tests", ["-m", "pytest", "-q", "--color=no"], None, 0),
+            ("counterexamples", ["tools/replay_counterexamples.py"], None, 0),
+        ])
     records = []
     for name, args, stdin, expected_exit in cases:
         started = datetime.now(timezone.utc).isoformat()
@@ -47,7 +51,7 @@ def capture(phase):
             text=True, timeout=180, check=False,
         )
         output = completed.stdout
-        (output_dir / f"{name}.txt").write_text(output, encoding="utf-8")
+        (output_dir / f"{name}.txt").write_text(output, encoding="utf-8", newline="")
         records.append({
             "name": name,
             "started_utc": started,
@@ -61,12 +65,24 @@ def capture(phase):
         print(f"{phase}/{name}: exit {completed.returncode} (expected {expected_exit})")
         if completed.returncode != expected_exit:
             raise SystemExit(f"Unexpected outcome for {name}; inspect saved output")
+    metadata = {
+        "python": sys.version,
+        "dependencies": {name: version(name) for name in ["hypothesis", "pytest"]},
+        "phase": phase,
+        "application_sha256": hashlib.sha256(
+            (cwd / "parking_fee.py").read_bytes()
+        ).hexdigest(),
+        "tests_sha256": hashlib.sha256(
+            (ROOT / "test_parking_fee.py").read_bytes()
+        ).hexdigest(),
+        "commands": records,
+    }
+    if phase == "after":
+        metadata["cli_tests_sha256"] = hashlib.sha256(
+            (ROOT / "test_cli.py").read_bytes()
+        ).hexdigest()
     (output_dir / "manifest.json").write_text(
-        json.dumps({"python": sys.version, "phase": phase,
-                    "application_sha256": hashlib.sha256((cwd / "parking_fee.py").read_bytes()).hexdigest(),
-                    "tests_sha256": hashlib.sha256((ROOT / "test_parking_fee.py").read_bytes()).hexdigest(),
-                    "commands": records},
-                   indent=2) + "\n", encoding="utf-8",
+        json.dumps(metadata, indent=2) + "\n", encoding="utf-8",
     )
 
 

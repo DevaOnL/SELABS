@@ -21,7 +21,7 @@ def render(phase):
     target_dir.mkdir(exist_ok=True)
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch()
-        page = browser.new_page(viewport={"width": 1200, "height": 200},
+        page = browser.new_page(viewport={"width": 1000, "height": 200},
                                 device_scale_factor=1.5)
         for record in manifest["commands"]:
             name = record["name"]
@@ -43,10 +43,10 @@ def render(phase):
                 .note {{ font-size: 14px; margin: 0 0 16px; }}
                 .metadata {{ padding: 14px; background: #dfe7ef;
                              white-space: pre-wrap; overflow-wrap: anywhere;
-                             font: 15px/1.55 monospace; }}
+                             font: 16px/1.55 monospace; }}
                 pre {{ margin: 0; padding: 18px; background: #101c2a;
                        color: #eef4fa; white-space: pre-wrap;
-                       overflow-wrap: anywhere; font: 17px/1.5 monospace; }}
+                       overflow-wrap: anywhere; font: 18px/1.5 monospace; }}
                 </style></head><body>
                 <h1>Lab 7 · {html.escape(phase.title())} · {html.escape(name)}</h1>
                 <p class="note">Browser screenshot of saved command output.
